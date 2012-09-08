@@ -1,20 +1,21 @@
 ﻿<common:LayoutAwarePage
-    x:Name="pageRoot"
-    x:Class="PayPerPlace.Metro.StartPage"
-    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PayPerPlace.Metro"
     xmlns:common="using:PayPerPlace.Metro.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Bing.Maps"
+    x:Name="pageRoot"
+    x:Class="PayPerPlace.Metro.StartPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}"
     mc:Ignorable="d">
 
-    <Page.Resources>
+    <common:LayoutAwarePage.Resources>
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">My Application</x:String>
-    </Page.Resources>
+    </common:LayoutAwarePage.Resources>
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
@@ -26,16 +27,6 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <!-- Back button and page title -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <!--<Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>-->
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
-        </Grid>
 
         <VisualStateManager.VisualStateGroups>
 
@@ -66,5 +57,31 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--<Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>-->
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Start" Style="{StaticResource PageHeaderTextStyle}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+        	<Grid.RowDefinitions>
+        		<RowDefinition/>
+        		<RowDefinition Height="Auto"/>
+        	</Grid.RowDefinitions>
+        	<Grid>
+        		<Grid.RowDefinitions>
+        			<RowDefinition Height="Auto"/>
+        			<RowDefinition/>
+        		</Grid.RowDefinitions>
+        		<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Ongoing Challenge:" VerticalAlignment="Top"/>
+        		<Maps:Map Credentials="AnE0a2KsnKLj1pTv9MxUcqotGDgjxiK_1IlKl5UqWtjE9x06P3rO6rWqkGzAnFlZ" Grid.Row="1"/>
+        	</Grid>
+        	<Button Content="Create a New Challenge" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"/>
+        </Grid>
+
     </Grid>
 </common:LayoutAwarePage>
