@@ -23,7 +23,7 @@ namespace PayPerPlace.Metro
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         /// <summary>
         /// Initializes the singleton Application object.  This is the first line of authored code
@@ -32,6 +32,9 @@ namespace PayPerPlace.Metro
         public App()
         {
             this.InitializeComponent();
+
+            IoCBootstrap.Configure(this);
+
             this.Suspending += OnSuspending;
         }
 
@@ -77,7 +80,8 @@ namespace PayPerPlace.Metro
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(GroupedItemsPage), "AllGroups"))
+                //if (!rootFrame.Navigate(typeof(GroupedItemsPage), "AllGroups"))
+                if (!rootFrame.Navigate(typeof(MainPage)))
                 {
                     throw new Exception("Failed to create initial page");
                 }

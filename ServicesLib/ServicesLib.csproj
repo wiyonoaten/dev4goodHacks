@@ -99,7 +99,11 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Models\Challenge.cs" />
+    <Compile Include="Models\Charity.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="PayPerPlaceServiceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +113,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="MobileServicesManagedClient, Version=0.2.0.0">
+      <Name>Windows Azure Mobile Services Managed Client</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
