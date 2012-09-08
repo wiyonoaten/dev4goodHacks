@@ -1,5 +1,6 @@
-﻿using PayPerPlace.Metro.Common;
-
+﻿using GalaSoft.MvvmLight.Ioc;
+using PayPerPlace.Metro.Common;
+using ServicesLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -81,7 +82,17 @@ namespace PayPerPlace.Metro
                 // configuring the new page by passing required information as a navigation
                 // parameter
                 //if (!rootFrame.Navigate(typeof(GroupedItemsPage), "AllGroups"))
-                if (!rootFrame.Navigate(typeof(MainPage)))
+
+                PayPerPlaceServiceClient serviceClient = SimpleIoc.Default.GetInstance<PayPerPlaceServiceClient>();
+
+                Type landingPageType = typeof(RegisterPage);
+
+                if (serviceClient.CheckIsUserRegistered())
+                {
+                    landingPageType = typeof(StartPage);
+                }
+
+                if (!rootFrame.Navigate(landingPageType))
                 {
                     throw new Exception("Failed to create initial page");
                 }

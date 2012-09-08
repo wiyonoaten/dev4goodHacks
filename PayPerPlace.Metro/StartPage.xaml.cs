@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using ServicesLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,9 +19,9 @@ namespace PayPerPlace.Metro
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : PayPerPlace.Metro.Common.LayoutAwarePage
+    public sealed partial class StartPage : PayPerPlace.Metro.Common.LayoutAwarePage
     {
-        public MainPage()
+        public StartPage()
         {
             this.InitializeComponent();
         }
@@ -49,12 +47,6 @@ namespace PayPerPlace.Metro
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-        }
-
-        private void BtnRegister_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
-        {
-            PayPerPlaceServiceClient serviceClient = SimpleIoc.Default.GetInstance<PayPerPlaceServiceClient>();
-            serviceClient.RegisterUserAsync(TxtBoxUserName.Text);
         }
     }
 }
