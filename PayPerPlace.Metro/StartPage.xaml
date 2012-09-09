@@ -73,7 +73,7 @@
         		<RowDefinition/>
         	</Grid.RowDefinitions>
             <Button Content="View Running Challenges" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Tapped="BtnViewRunningChallenges_Tapped"/>
-            <Button Content="Create a New Challenge" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Tapped="BtnStartNewChallenge_Tapped"/>
+<Button x:Name="BtnCreateNewChallenge" Content="Create a New Challenge" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Tapped="BtnStartNewChallenge_Tapped"/>
         </Grid>
 
     </Grid>

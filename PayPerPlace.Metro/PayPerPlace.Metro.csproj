@@ -110,6 +110,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateChallenge.xaml.cs">
+      <DependentUpon>CreateChallenge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewChallengePage.xaml.cs">
+      <DependentUpon>CreateNewChallengePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomPin.xaml.cs">
+      <DependentUpon>CustomPin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GroupedItemsPage.xaml.cs">
       <DependentUpon>GroupedItemsPage.xaml</DependentUpon>
     </Compile>
@@ -164,6 +173,18 @@
     <Page Include="Common\StandardStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CreateChallenge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateNewChallengePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomPin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GroupedItemsPage.xaml">
       <Generator>MSBuild:Compile</Generator>

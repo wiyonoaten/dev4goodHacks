@@ -62,7 +62,7 @@ namespace PayPerPlace.Metro
 
         private async void BtnStartNewChallenge_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            PayPerPlaceServiceClient serviceClient = SimpleIoc.Default.GetInstance<PayPerPlaceServiceClient>();
+            /*PayPerPlaceServiceClient serviceClient = SimpleIoc.Default.GetInstance<PayPerPlaceServiceClient>();
 
             Challenge newChallenge = new Challenge()
                 {
@@ -91,6 +91,12 @@ namespace PayPerPlace.Metro
                 };
 
             bool successful = await serviceClient.CreateNewChallengeAsync(newChallenge);
+            */
+
+            if (!Frame.Navigate(typeof(CreateChallenge)))
+                {
+                    throw new Exception("Failed to create start page");
+                }
         }
     }
 }

@@ -19,6 +19,8 @@
             <!-- Application-specific resources -->
 
             <x:String x:Key="AppName">PayPerPlace.Metro</x:String>
+            <x:String x:Key="BingCredentials">AnJwk78cjoJfBMQXAxC85FwLiLPwmy6paQ1TsTJVg_-62hNraRRUzXRz1RELKfHa</x:String>
+        
         </ResourceDictionary>
     </Application.Resources>
 </Application>
