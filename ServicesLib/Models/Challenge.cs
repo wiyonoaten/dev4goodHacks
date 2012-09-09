@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using ServicesLib.Models.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +10,17 @@ namespace ServicesLib.Models
 {
     public class Challenge
     {
-        public User Creator { get; set; }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public int CreatorUserId { get; set; }
+        
         public DateTime ExpiryTime { get; set; }
-        public List<Location> Location { get; set; }
+
+        public decimal Wager { get; set; }
+
+        [DataMemberJsonConverter(ConverterType = typeof(LocationListConverter))]
+        public List<Location> LocationList { get; set; }
     }
 }

@@ -70,17 +70,10 @@
         <Grid Grid.Row="1">
         	<Grid.RowDefinitions>
         		<RowDefinition/>
-        		<RowDefinition Height="Auto"/>
+        		<RowDefinition/>
         	</Grid.RowDefinitions>
-        	<Grid>
-        		<Grid.RowDefinitions>
-        			<RowDefinition Height="Auto"/>
-        			<RowDefinition/>
-        		</Grid.RowDefinitions>
-        		<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Ongoing Challenge:" VerticalAlignment="Top"/>
-        		<Maps:Map Credentials="AnE0a2KsnKLj1pTv9MxUcqotGDgjxiK_1IlKl5UqWtjE9x06P3rO6rWqkGzAnFlZ" Grid.Row="1"/>
-        	</Grid>
-        	<Button Content="Create a New Challenge" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"/>
+            <Button Content="View Running Challenges" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Tapped="BtnViewRunningChallenges_Tapped"/>
+            <Button Content="Create a New Challenge" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Tapped="BtnStartNewChallenge_Tapped"/>
         </Grid>
 
     </Grid>

@@ -87,7 +87,7 @@ namespace PayPerPlace.Metro
 
                 Type landingPageType = typeof(RegisterPage);
 
-                if (serviceClient.CheckIsUserRegistered())
+                if (await serviceClient.CheckIsUserRegisteredAsync())
                 {
                     landingPageType = typeof(StartPage);
                 }

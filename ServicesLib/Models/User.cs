@@ -10,7 +10,7 @@ namespace ServicesLib.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int CharityId { get; set; }
         public string GiveyTag { get; set; }
+        public string PushChannelUri { get; set; }
     }
 }

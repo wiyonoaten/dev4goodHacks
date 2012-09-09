@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Ioc;
+using ServicesLib;
+using ServicesLib.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -47,6 +50,47 @@ namespace PayPerPlace.Metro
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void BtnViewRunningChallenges_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (!Frame.Navigate(typeof(RunningChallengesPage)))
+            {
+                throw new Exception("Failed to create running challenges page");
+            }
+        }
+
+        private async void BtnStartNewChallenge_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            PayPerPlaceServiceClient serviceClient = SimpleIoc.Default.GetInstance<PayPerPlaceServiceClient>();
+
+            Challenge newChallenge = new Challenge()
+                {
+                    Name = "Test Challenge",
+                    CreatorUserId = (await serviceClient.GetCurrentUserAsync()).Id,
+                    ExpiryTime = DateTime.Now.ToUniversalTime().AddDays(7), //TODO:
+                    Wager = 5.0M,
+                    LocationList = new List<Location>()
+                        {
+                            new Location
+                                {
+                                    Latitude = 0.0,
+                                    Longitude = 0.0,
+                                },
+                            new Location
+                                {
+                                    Latitude = 50.0,
+                                    Longitude = 50.0,
+                                },
+                            new Location
+                                {
+                                    Latitude = 100.0,
+                                    Longitude = 50.0,
+                                },
+                        },
+                };
+
+            bool successful = await serviceClient.CreateNewChallengeAsync(newChallenge);
         }
     }
 }

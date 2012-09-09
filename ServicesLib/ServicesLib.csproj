@@ -100,9 +100,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Models\Challenge.cs" />
-    <Compile Include="Models\Charity.cs" />
+    <Compile Include="Models\Converters\CheckInListConverter.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Converters\LocationListConverter.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRun.cs" />
     <Compile Include="PayPerPlaceServiceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
