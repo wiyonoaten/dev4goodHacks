@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Security.Authentication.Web;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -62,6 +63,41 @@ namespace PayPerPlace.Metro
                 if (!Frame.Navigate(typeof(StartPage)))
                 {
                     throw new Exception("Failed to create start page");
+                }
+
+                try
+                {
+                    string clientID = "7shd6ndha9hflmsduus8u";
+                    string clientSecret = "8ndf7shd7fs79df83nfmls";
+                    string redirectURL = "http://runwithme.com/givey_callback";
+                    String giveyURL = "https://api.givey.com/v1/oauth/authorize?response_type=code&lcient_id=" + Uri.EscapeDataString(clientID) + "&redirect_uri=" + Uri.EscapeDataString(redirectURL) + "&client_secret=" + clientSecret + "&grant_type=authorization_code&scope=read_stream&display=popup&response_type=token";
+
+                    System.Uri StartUri = new Uri(giveyURL);
+                    System.Uri EndUri = new Uri(redirectURL);
+
+                    WebAuthenticationResult WebAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
+                                                            WebAuthenticationOptions.None,
+                                                            StartUri,
+                                                            EndUri);
+                    if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.Success)
+                    {
+                        MessageDialog dlg = new MessageDialog(WebAuthenticationResult.ResponseData.ToString());
+                    }
+                    else if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.ErrorHttp)
+                    {
+                        MessageDialog dlg = new MessageDialog("HTTP Error returned by AuthenticateAsync() : " + WebAuthenticationResult.ResponseErrorDetail.ToString());
+                    }
+                    else
+                    {
+                        MessageDialog dlg = new MessageDialog("Error returned by AuthenticateAsync() : " + WebAuthenticationResult.ResponseStatus.ToString());
+                    }
+                }
+                catch (Exception Error)
+                {
+                    //
+                    // Bad Parameter, SSL/TLS Errors and Network Unavailable errors are to be handled here.
+                    //
+                    MessageDialog dlg = new MessageDialog("Error, try again. " + Error.ToString());
                 }
             }
             else
