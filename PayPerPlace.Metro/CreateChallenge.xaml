@@ -42,7 +42,10 @@
             </StackPanel>
         </StackPanel>        
     
-<Maps:Map x:Name="map" Margin="60,0,0,0" Grid.Column="1" Credentials="{StaticResource BingCredentials}" ShowScaleBar="True" ZoomLevel="5" Grid.Row="1" ShowTraffic="False" Tapped="map_Tapped">
+<Maps:Map x:Name="map" Margin="60,0,0,0" Grid.Column="1" Credentials="{StaticResource BingCredentials}" ShowScaleBar="True" ZoomLevel="12" Grid.Row="1" ShowTraffic="False" Tapped="map_Tapped">
+<Maps:Map.Center>
+                <Maps:Location Latitude="51.5060" Longitude="0.0850"/>
+            </Maps:Map.Center>
             <Maps:Map.Children>
                 <Maps:Pushpin x:Name="pushPin" />
             </Maps:Map.Children>

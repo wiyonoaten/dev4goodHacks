@@ -14,6 +14,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
+using ServicesLib;
+using GalaSoft.MvvmLight.Ioc;
+using ServicesLib.Models;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -78,7 +81,7 @@ namespace PayPerPlace.Metro
         {
             Geolocator geolocator = new Geolocator();
             var pos = await geolocator.GetGeopositionAsync(TimeSpan.FromDays(10), TimeSpan.FromHours(1));
-            Location location = new Location(pos.Coordinate.Latitude, pos.Coordinate.Longitude);
+            Bing.Maps.Location location = new Bing.Maps.Location(pos.Coordinate.Latitude, pos.Coordinate.Longitude);
 
             //Center map view on current location.
             MapLayer.SetPosition(pushPin, location);
@@ -88,7 +91,7 @@ namespace PayPerPlace.Metro
         private void map_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var pos = e.GetPosition(map);
-            Location location;
+            Bing.Maps.Location location;
             map.TryPixelToLocation(pos, out location);
 
             MapLayer.SetPosition(pin, location);
@@ -97,9 +100,30 @@ namespace PayPerPlace.Metro
 
         private void btn_CreateNewChallenge(object sender, RoutedEventArgs e)
         {
-            MessageDialog dlg = new MessageDialog("Challenge Created.");
-            dlg.Commands.Add(new UICommand("OK"));
-            dlg.ShowAsync();
+            PayPerPlaceServiceClient a = SimpleIoc.Default.GetInstance<PayPerPlaceServiceClient>();
+            Challenge c = new Challenge(); 
+	    try
+	    {
+	    	if (txtTitle.Text != "")
+	    	{
+            		c.Name = txtTitle.Text;
+            	}
+	    	if (txtWager.Text != "")
+	    	{
+            		c.Wager = Convert.ToInt32(txtWager.Text);
+            	}
+                a.CreateNewChallengeAsync(c);
+
+                MessageDialog dlg = new MessageDialog("Challenge Created.");
+                dlg.Commands.Add(new UICommand("OK"));
+                dlg.ShowAsync();
+	   }
+	   catch (Exception ex)
+	   {
+	        MessageDialog dlg = new MessageDialog("Error - " + ex.Message);
+                dlg.Commands.Add(new UICommand("OK"));
+                dlg.ShowAsync();
+	   }	 
         }
     }
 }
